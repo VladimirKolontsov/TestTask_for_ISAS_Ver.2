@@ -1,59 +1,47 @@
-package ru.kolontsov.testtask.TestTask.models;
+package ru.kolontsov.testtask.TestTask.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString
+import java.util.List;
+
+@Data
 @Entity
 @Table(name = "product_model")
-public class Model {
+public class ModelEntity {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
-    @NotEmpty
-    @Column(name = "product_type_id")
-    private int productTypeId;
+//    @Column(name = "product_type_id")
+//    private Long productTypeId;
 
-    @NotEmpty
     @Column(name = "name")
     private String name;
 
-    @NotEmpty
     @Min(value = 1)
     @Column(name = "serial_number")
-    private int serialNumber;
+    private Integer serialNumber;
 
-    @NotEmpty
     @Column(name = "color")
     private String color;
 
-    @NotEmpty
     @Column(name = "size")
     private String size;
 
-    @NotEmpty
     @Min(value = 1)
     @Column(name = "price")
-    private int price;
+    private Integer price;
 
-    @NotEmpty
     @Column(name = "is_in_stock")
-    private boolean isInStock;
+    private Boolean isInStock;
 
-    @NotEmpty
     @ManyToOne
     @JoinColumn(name = "product_type_id", referencedColumnName = "id")
-    private Type type;
+    private TypeEntity typeEntity;
 
-    @NotEmpty
-    @OneToOne(mappedBy = "model")
-    private ModelAttribute modelAttribute;
+    @OneToMany(mappedBy = "modelEntity")
+    private List<ModelAttributeEntity> modelAttributeEntity;
 }

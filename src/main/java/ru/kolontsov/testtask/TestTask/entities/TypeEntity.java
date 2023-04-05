@@ -1,48 +1,37 @@
-package ru.kolontsov.testtask.TestTask.models;
+package ru.kolontsov.testtask.TestTask.entities;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 
 import java.util.List;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString
+@Data
 @Entity
 @Table(name = "product_type")
-public class Type {
+public class TypeEntity {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
-    @NotEmpty
     @Column(name = "name")
     private String name;
 
-    @NotEmpty
     @Column(name = "country")
     private String country;
 
-    @NotEmpty
     @Column(name = "brand")
     private String brand;
 
-    @NotEmpty
     @Column(name = "is_online_order")
-    private boolean isOnlineOrder;
+    private Boolean isOnlineOrder;
 
-    @NotEmpty
     @Column(name = "is_credit")
-    private boolean isCredit;
+    private Boolean isCredit;
 
-    @NotEmpty
     @Column(name = "is_in_stock")
-    private boolean isInStock;
+    private Boolean isInStock;
 
-    @OneToMany(mappedBy = "type")
-    private List<Model> models;
+    @OneToMany(mappedBy = "typeEntity")
+    private List<ModelEntity> modelEntities;
 }
