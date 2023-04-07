@@ -1,5 +1,6 @@
 package ru.kolontsov.testtask.TestTask.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -32,6 +33,6 @@ public class TypeEntity {
     @Column(name = "is_in_stock")
     private Boolean isInStock;
 
-    @OneToMany(mappedBy = "typeEntity")
-    private List<ModelEntity> modelEntities;
+//    @OneToMany(mappedBy = "typeEntity")
+//    private List<ModelEntity> modelEntities;
 }

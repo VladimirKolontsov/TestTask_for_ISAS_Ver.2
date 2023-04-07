@@ -1,6 +1,7 @@
 package ru.kolontsov.testtask.TestTask.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.kolontsov.testtask.TestTask.entities.ModelEntity;
 import ru.kolontsov.testtask.TestTask.entities.TypeEntity;
@@ -12,44 +13,27 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@org.springframework.stereotype.Service
+@Service
 @Transactional(readOnly = true)
-public class Service {
+public class Services {
     private final TypeRepository typeRepository;
     private final ModelRepository modelRepository;
     private final ModelAttributeRepository modelAttributeRepository;
 
     @Autowired
-    public Service(TypeRepository typeRepository, ModelRepository modelRepository,
-                   ModelAttributeRepository modelAttributeRepository) {
+    public Services(TypeRepository typeRepository, ModelRepository modelRepository,
+                    ModelAttributeRepository modelAttributeRepository) {
         this.typeRepository = typeRepository;
         this.modelRepository = modelRepository;
         this.modelAttributeRepository = modelAttributeRepository;
     }
 
-    public List<TypeEntity> findAll() {
-        return typeRepository.findAll();
+    public void findAll() {
+        typeRepository.findAll();
     }
 
-    public TypeEntity findOne(long id) {
-        Optional<TypeEntity> type = typeRepository.findById(id);
-        return type.orElse(null);
-    }
-
-    @Transactional
-    public void save(TypeEntity typeEntity) {
-        typeRepository.save(typeEntity);
-    }
-
-    @Transactional
-    public void update(long id, TypeEntity typeEntityUpdated) {
-        typeEntityUpdated.setId(id);
-        typeRepository.save(typeEntityUpdated);
-    }
-
-    @Transactional
-    public void delete(long id) {
-        typeRepository.deleteById(id);
+    public Optional<TypeEntity> findById(long id) {
+        return typeRepository.findById(id);
     }
 
     // Нахождение List<Long> typeIdList, чтоды использовать в других функциях
@@ -60,7 +44,7 @@ public class Service {
     }
 
     // Фильтрация по виду техники: приходит тип техники, выдергивается лист id по типу техники и выходит список моделей этого типа
-    public List<ModelEntity> getTypeByName(String name) {
+    public List<ModelEntity> getModelsByTypeName(String name) {
         List<ModelEntity> allModelsByProductTypeName = modelRepository.findAllByIdIn(getTypeIdList(name));
         return allModelsByProductTypeName;
     }
@@ -75,6 +59,11 @@ public class Service {
     public List<ModelEntity> getTypeByRangeOfPrice(String name, int minPrice, int maxPrice) {
 
         return null;
+    }
+
+    public List<TypeEntity> getTypeByName(String name) {
+        List<TypeEntity> allTypesByProductTypeName = typeRepository.findAllByNameIgnoreCase(name);
+        return allTypesByProductTypeName;
     }
 
 

@@ -5,20 +5,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.kolontsov.testtask.TestTask.entities.ModelEntity;
-import ru.kolontsov.testtask.TestTask.services.Service;
+import ru.kolontsov.testtask.TestTask.entities.TypeEntity;
+import ru.kolontsov.testtask.TestTask.services.Services;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("/cont")
+@RequestMapping("/")
 public class Controller {
 
-    private final Service service;
+    private final Services services;
 
     @Autowired
-    public Controller(Service service) {
-        this.service = service;
+    public Controller(Services services) {
+        this.services = services;
     }
 
     @GetMapping
@@ -26,9 +27,20 @@ public class Controller {
         return "my proj";
     }
 
+    @GetMapping("/find")
+    public void showAll() {
+        services.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public Optional<TypeEntity> findTypeById(@PathVariable("id") Long id) {
+        return services.findById(id);
+    }
+
+
     @GetMapping("/{name}")
-    public List<ModelEntity> showModelsByType(@PathVariable("name") String name) {
-        return service.getTypeByName(name);
+    public List<TypeEntity> showModelsByType(@PathVariable("name") String name) {
+        return services.getTypeByName(name);
     }
 
 }
