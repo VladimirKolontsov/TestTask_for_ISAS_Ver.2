@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import ru.kolontsov.testtask.TestTask.dto.ModelAndAttributeDto;
 import ru.kolontsov.testtask.TestTask.dto.ModelAttributeDto;
 import ru.kolontsov.testtask.TestTask.dto.ModelDto;
 import ru.kolontsov.testtask.TestTask.entities.ModelEntity;
@@ -109,9 +110,9 @@ public class Controller {
     }
 
     @PostMapping("/add")
-    public String createNewTypeEntity(@RequestBody ModelDto modelDto, @RequestBody ModelAttributeDto modelAttributeDto) {
+    public String createNewTypeEntity(@RequestBody ModelAndAttributeDto modelAndAttributeDto) {
 
-        services.createNewModelEntity(modelDto, modelAttributeDto);
+        services.createNewModelEntity(modelAndAttributeDto.getModelDto(), modelAndAttributeDto.getModelAttributeDto());
 
         return "redirect:/find";
     }

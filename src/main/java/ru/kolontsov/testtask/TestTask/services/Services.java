@@ -123,8 +123,8 @@ public class Services {
     public ModelEntity createNewModelEntity(ModelDto modelDto,
                                             ModelAttributeDto modelAttributeDto) {
 
-        Long typeId = modelDto.getTypeId();
-        Optional<TypeEntity> typeEntity = typeRepository.findById(typeId);
+        Long typeId = modelDto.getTypeId();//выцепили в какой вид техники мы хотим добавить - id
+        Optional<TypeEntity> typeEntity = typeRepository.findById(typeId);// по этому id ищем сам объект типа техники
 
         List<ModelAttributeEntity> attForModelEntity = createModelAttForEntity(modelDto, modelAttributeDto);
 
@@ -151,19 +151,21 @@ public class Services {
         String typeName = Objects.requireNonNull(typeRepository.findById(typeId).orElse(null)).getName();
 
         List<ModelAttributeEntity> attributeEntityList = new ArrayList<>();
+        ModelAttributeEntity modelAttribute1 = new ModelAttributeEntity();
+        ModelAttributeEntity modelAttribute2 = new ModelAttributeEntity();
 
         if (typeName.equalsIgnoreCase(String.valueOf(TypeName.TV))) {
 
-            ModelAttributeEntity modelAttribute1 = new ModelAttributeEntity();
             modelAttribute1.setName("category");
             modelAttribute1.setValue(modelAttributeDto.getValue());
-            attributeEntityList.add(modelAttribute1);
 
-            ModelAttributeEntity modelAttribute2 = new ModelAttributeEntity();
             modelAttribute2.setName("technology");
             modelAttribute2.setValue(modelAttributeDto.getValue());
-            attributeEntityList.add(modelAttribute2);
         } // и так далее для всех типов техники
+
+        attributeEntityList.add(modelAttribute1);
+        attributeEntityList.add(modelAttribute2);
+        modelAttributeRepository.saveAllAndFlush(attributeEntityList);
         return attributeEntityList;
     }
 
