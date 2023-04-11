@@ -33,6 +33,19 @@ public class TypeEntity {
     @Column(name = "is_in_stock")
     private Boolean isInStock;
 
-//    @OneToMany(mappedBy = "typeEntity")
-//    private List<ModelEntity> modelEntities;
+    @OneToMany(mappedBy = "typeEntity")
+    private List<ModelEntity> modelEntities;
+
+    public TypeEntity(String name, String country, String brand,
+                      Boolean isOnlineOrder, Boolean isCredit, Boolean isInStock) {
+        this.name = name;
+        this.country = country;
+        this.brand = brand;
+        this.isOnlineOrder = isOnlineOrder;
+        this.isCredit = isCredit;
+        this.isInStock = isInStock;
+    }
+
+    public TypeEntity() {
+    }
 }

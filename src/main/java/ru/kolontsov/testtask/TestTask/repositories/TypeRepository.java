@@ -10,5 +10,4 @@ import java.util.List;
 public interface TypeRepository extends JpaRepository<TypeEntity, Long> {
     List<TypeEntity> findAllByNameIgnoreCase(String name);
 
-
 }

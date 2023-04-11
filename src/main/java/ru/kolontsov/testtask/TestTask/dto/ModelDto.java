@@ -1,57 +1,41 @@
-package ru.kolontsov.testtask.TestTask.entities;
+package ru.kolontsov.testtask.TestTask.dto;
+
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
-import lombok.*;
+import lombok.Data;
+import ru.kolontsov.testtask.TestTask.entities.ModelAttributeEntity;
+import ru.kolontsov.testtask.TestTask.entities.TypeEntity;
 
 import java.util.List;
 
 @Data
-@Entity
-@Table(name = "product_model")
-public class ModelEntity {
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+@Schema(name = "Модели")
+public class ModelDto {
 
-//    @Column(name = "product_type_id")
-//    private Long productTypeId;
+    private Long typeId;
 
-    @Column(name = "name")
     @Schema(name = "Наименование модели")
     private String name;
 
-    @Min(value = 1)
-    @Column(name = "serial_number")
     @Schema(name = "Серийный номер")
     private Integer serialNumber;
 
-    @Column(name = "color")
     @Schema(name = "Цвет")
     private String color;
 
-    @Column(name = "size")
     @Schema(name = "Размер")
     private Integer size;
 
-    @Min(value = 1)
-    @Column(name = "price")
+    //TODO переделать на BigDecimalт или все таки Double?
     @Schema(name = "Цена")
     private Integer price;
 
-    @Column(name = "is_in_stock")
     @Schema(name = "Налчие на складе")
     private Boolean isInStock;
 
-    @ManyToOne
-    @JoinColumn(name = "product_type_id", referencedColumnName = "id")
-    @JsonIgnore
-    private TypeEntity typeEntity;
-
-    @OneToMany(mappedBy = "modelEntity")
     @Schema(name = "Уникальные характеристики")
     private List<ModelAttributeEntity> modelAttributeEntity;
 
