@@ -5,16 +5,14 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import ru.kolontsov.testtask.TestTask.dto.ModelAndAttributeDto;
-import ru.kolontsov.testtask.TestTask.dto.ModelAttributeDto;
 import ru.kolontsov.testtask.TestTask.dto.ModelDto;
 import ru.kolontsov.testtask.TestTask.entities.ModelEntity;
 import ru.kolontsov.testtask.TestTask.entities.TypeEntity;
 import ru.kolontsov.testtask.TestTask.services.Services;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/")
@@ -30,7 +28,7 @@ public class Controller {
 
     @GetMapping
     public String showMessage() {
-        return "my proj";
+        return "Let's start to chose technique for you!";
     }
 
     @GetMapping("/find")
@@ -39,11 +37,7 @@ public class Controller {
         return services.findAll();
     }
 
-//    @GetMapping("/find/{id}")
-//    public Optional<TypeEntity> findTypeById(@PathVariable("id") Long id) {
-//        return services.findById(id);
-//    }
-
+    // можно передать в запрос лист разных имен
     @GetMapping("/find/name/{name}")
     @Operation(summary = "модели выбранного типа техники")
     public List<ModelEntity> showModelsByType(
@@ -52,7 +46,7 @@ public class Controller {
         return services.getModelsByTypeName(names);
     }
 
-    //TODO как на лист поменять понятно, а как запрос сделать с листом в репозитории не понятно..
+    // можно передать в запрос лист разных цветов
     @GetMapping("/find-color")
     @Operation(summary = "модели выбранного цвета техники")
     public List<ModelEntity> showModelsByTypeAndColor(@Parameter(description = "выбранный цвет техники")
@@ -62,12 +56,11 @@ public class Controller {
 
     @GetMapping("/find-price")
     @Operation(summary = "модели выбранного ценового диапазона")
-    public List<ModelEntity> showModelsByPriceRange(@RequestParam("min") int minPrice,
-                                                    @RequestParam("max") int maxPrice) {
+    public List<ModelEntity> showModelsByPriceRange(@RequestParam("min") BigDecimal minPrice,
+                                                    @RequestParam("max") BigDecimal maxPrice) {
         return services.getModelsByRangeOfPrice(minPrice, maxPrice);
     }
 
-    //TODO не понял к чем этот метод
     @GetMapping("/find-att")
     public List<ModelEntity> showModelAttribute(@RequestParam("name") String name,
                                                 @RequestParam("attname") String attName,
@@ -75,6 +68,7 @@ public class Controller {
         return services.modelsAttribute(name, attName, attValue);
     }
 
+    // можно передать в запрос лист разных имен
     @GetMapping("/find-stock")
     @Operation(summary = "модели техники в наличии")
     public List<ModelEntity> showModelByTypeAndInStock(@RequestParam("name") List<String> name,
@@ -82,6 +76,7 @@ public class Controller {
         return services.modelsByTypeNameAndStockAvailable(name, isInStock);
     }
 
+    // можно передать в запрос лист разных имен
     @GetMapping("/find-size")
     @Operation(summary = "модели выбранного типа техники и размера")
     public List<ModelEntity> showModelByTypeAndSize(@RequestParam("name") List<String> name,
@@ -113,6 +108,7 @@ public class Controller {
                                               @RequestParam("sorting") String sortingType) {
 
         List<ModelEntity> sortedModelList = new ArrayList<>();
+
         if (sortingType.equalsIgnoreCase(String.valueOf(SortingType.ASC))) {
             sortedModelList = services.modelsSortByPrice(typeName);
         } else if (sortingType.equalsIgnoreCase(String.valueOf(SortingType.DESC))) {
@@ -122,6 +118,7 @@ public class Controller {
         return sortedModelList;
     }
 
+    //TODO это нормально оставить тут "redirect" или лучше как-то переделать?
     @PostMapping("/add")
     @Operation(summary = "добавление новой модели")
     public String createNewTypeEntity(@RequestBody ModelDto modelDto) {

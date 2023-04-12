@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import ru.kolontsov.testtask.TestTask.entities.ModelEntity;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Repository
@@ -13,7 +14,9 @@ public interface ModelRepository extends JpaRepository<ModelEntity, Long> {
 
     List<ModelEntity> findAllByColorInIgnoreCase(List<String> color);
 
-    List<ModelEntity> findModelEntitiesByPriceBetween (int minPrice, int maxPrice);
+    List<ModelEntity> findModelEntitiesByPriceBetween (BigDecimal minPrice, BigDecimal maxPrice);
+
+    //TODO тоже не могу понять как убрать этот цвет?
     List<ModelEntity> findAllByTypeEntityNameInIgnoreCaseAndAndIsInStock(List<String> name, boolean isInStock);
     List<ModelEntity> findAllByTypeEntityNameInIgnoreCaseAndSizeBetween(List<String> name, int min, int max);
 
@@ -25,6 +28,7 @@ public interface ModelRepository extends JpaRepository<ModelEntity, Long> {
 
     List<ModelEntity> findAllByTypeEntityNameIgnoreCaseOrderByPriceDesc (String name);
 
+    //TODO сидел тупил зачем он нужен?) это та часть конечная п.2 где просили сделать поиск моделей по типу техники и ее доп атрибутам?
     @Query(value = """
             select pm.*
             from product_type pt

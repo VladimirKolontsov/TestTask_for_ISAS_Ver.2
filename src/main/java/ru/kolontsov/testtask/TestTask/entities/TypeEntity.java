@@ -1,6 +1,5 @@
 package ru.kolontsov.testtask.TestTask.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -36,16 +35,18 @@ public class TypeEntity {
     @OneToMany(mappedBy = "typeEntity")
     private List<ModelEntity> modelEntities;
 
-    public TypeEntity(String name, String country, String brand,
-                      Boolean isOnlineOrder, Boolean isCredit, Boolean isInStock) {
-        this.name = name;
-        this.country = country;
-        this.brand = brand;
-        this.isOnlineOrder = isOnlineOrder;
-        this.isCredit = isCredit;
-        this.isInStock = isInStock;
-    }
 
-    public TypeEntity() {
-    }
+    //TODO нах эти конструкторы делал тоже не помню) закоменитл - вроде пока все работает.
+//    public TypeEntity(String name, String country, String brand,
+//                      Boolean isOnlineOrder, Boolean isCredit, Boolean isInStock) {
+//        this.name = name;
+//        this.country = country;
+//        this.brand = brand;
+//        this.isOnlineOrder = isOnlineOrder;
+//        this.isCredit = isCredit;
+//        this.isInStock = isInStock;
+//    }
+//
+//    public TypeEntity() {
+//    }
 }

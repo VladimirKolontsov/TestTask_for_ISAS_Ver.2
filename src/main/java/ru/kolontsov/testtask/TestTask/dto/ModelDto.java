@@ -1,14 +1,9 @@
 package ru.kolontsov.testtask.TestTask.dto;
 
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.persistence.*;
-import jakarta.validation.constraints.Min;
 import lombok.Data;
-import ru.kolontsov.testtask.TestTask.entities.ModelAttributeEntity;
-import ru.kolontsov.testtask.TestTask.entities.TypeEntity;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Data
@@ -29,14 +24,13 @@ public class ModelDto {
     @Schema(name = "Размер")
     private Integer size;
 
-    //TODO переделать на BigDecimalт или все таки Double?
     @Schema(name = "Цена")
-    private Integer price;
+    private BigDecimal price;
 
     @Schema(name = "Налчие на складе")
     private Boolean isInStock;
 
-//    @Schema(name = "Уникальные характеристики")
-//    private List<ModelAttributeDto> modelAttributeDto;
+    @Schema(name = "Уникальные характеристики")
+    private List<ModelAttributeDto> modelAttributeDto;
 
 }
