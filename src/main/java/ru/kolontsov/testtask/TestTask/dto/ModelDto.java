@@ -10,9 +10,10 @@ import java.util.List;
 @Schema(name = "Модель")
 public class ModelDto {
 
+    @Schema(name = "Идентификатор типа техники")
     private Long typeId;
 
-    @Schema(name = "Наименование")
+    @Schema(name = "Наименование модели")
     private String name;
 
     @Schema(name = "Серийный номер")

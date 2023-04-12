@@ -16,7 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/")
-@Tag(name = "Модели", description = "модели данного типа")
+@Tag(name = "Модели", description = "Методы для работы с моделями")
 public class Controller {
 
     private final Services services;
@@ -49,7 +49,7 @@ public class Controller {
     // можно передать в запрос лист разных цветов
     @GetMapping("/find-color")
     @Operation(summary = "модели выбранного цвета техники")
-    public List<ModelEntity> showModelsByTypeAndColor(@Parameter(description = "выбранный цвет техники")
+    public List<ModelEntity> showModelsByColor(@Parameter(description = "выбранный цвет техники")
                                                       @RequestParam("color") List<String> color) {
         return services.getModelsByColor(color);
     }
@@ -62,8 +62,12 @@ public class Controller {
     }
 
     @GetMapping("/find-att")
-    public List<ModelEntity> showModelAttribute(@RequestParam("name") String name,
+    @Operation(summary = "модели выбранного типа техники и его уникальных атрибутов")
+    public List<ModelEntity> showModelAttribute(@Parameter(description = "выбранный тип техники")
+                                                @RequestParam("name") String name,
+                                                @Parameter(description = "название характеристики")
                                                 @RequestParam("attname") String attName,
+                                                @Parameter(description = "значение характеристики")
                                                 @RequestParam("attvalue") String attValue) {
         return services.modelsAttribute(name, attName, attValue);
     }
@@ -71,7 +75,9 @@ public class Controller {
     // можно передать в запрос лист разных имен
     @GetMapping("/find-stock")
     @Operation(summary = "модели техники в наличии")
-    public List<ModelEntity> showModelByTypeAndInStock(@RequestParam("name") List<String> name,
+    public List<ModelEntity> showModelByTypeAndInStock(@Parameter(description = "выбранные типы техники")
+                                                       @RequestParam("name") List<String> name,
+                                                       @Parameter(description = "наличие на складе")
                                                        @RequestParam("stock") boolean isInStock) {
         return services.modelsByTypeNameAndStockAvailable(name, isInStock);
     }
@@ -79,8 +85,9 @@ public class Controller {
     // можно передать в запрос лист разных имен
     @GetMapping("/find-size")
     @Operation(summary = "модели выбранного типа техники и размера")
-    public List<ModelEntity> showModelByTypeAndSize(@RequestParam("name") List<String> name,
-                                                       @RequestParam("min") int min,
+    public List<ModelEntity> showModelByTypeAndSize(@Parameter(description = "выбранные типы техники")
+                                                    @RequestParam("name") List<String> name,
+                                                    @RequestParam("min") int min,
                                                     @RequestParam("max") int max) {
         return services.modelsByTypeNameAndSize(name, min, max);
     }
@@ -121,7 +128,8 @@ public class Controller {
     //TODO это нормально оставить тут "redirect" или лучше как-то переделать?
     @PostMapping("/add")
     @Operation(summary = "добавление новой модели")
-    public String createNewTypeEntity(@RequestBody ModelDto modelDto) {
+    public String createNewTypeEntity(@Parameter(description = "значения новой модели для добавления")
+                                      @RequestBody ModelDto modelDto) {
 
         services.createNewModelEntity(modelDto);
 

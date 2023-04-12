@@ -35,7 +35,6 @@ public class TypeEntity {
     @OneToMany(mappedBy = "typeEntity")
     private List<ModelEntity> modelEntities;
 
-
     //TODO нах эти конструкторы делал тоже не помню) закоменитл - вроде пока все работает.
 //    public TypeEntity(String name, String country, String brand,
 //                      Boolean isOnlineOrder, Boolean isCredit, Boolean isInStock) {
