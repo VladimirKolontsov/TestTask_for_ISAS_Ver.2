@@ -12,12 +12,12 @@ import ru.kolontsov.testtask.TestTask.entities.TypeEntity;
 import java.util.List;
 
 @Data
-@Schema(name = "Модели")
+@Schema(name = "Модель")
 public class ModelDto {
 
     private Long typeId;
 
-    @Schema(name = "Наименование модели")
+    @Schema(name = "Наименование")
     private String name;
 
     @Schema(name = "Серийный номер")
@@ -36,7 +36,7 @@ public class ModelDto {
     @Schema(name = "Налчие на складе")
     private Boolean isInStock;
 
-    @Schema(name = "Уникальные характеристики")
-    private List<ModelAttributeEntity> modelAttributeEntity;
+//    @Schema(name = "Уникальные характеристики")
+//    private List<ModelAttributeDto> modelAttributeDto;
 
 }

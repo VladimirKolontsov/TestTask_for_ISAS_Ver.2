@@ -11,11 +11,11 @@ import java.util.List;
 public interface ModelRepository extends JpaRepository<ModelEntity, Long> {
     List<ModelEntity> findAllByTypeEntityNameInIgnoreCase(List<String> nameTypeEntityList);
 
-    List<ModelEntity> findAllByColorIgnoreCase(String color);
+    List<ModelEntity> findAllByColorInIgnoreCase(List<String> color);
 
     List<ModelEntity> findModelEntitiesByPriceBetween (int minPrice, int maxPrice);
-    List<ModelEntity> findAllByTypeEntityNameIgnoreCaseAndAndIsInStock(String name, boolean isInStock);
-    List<ModelEntity> findAllByTypeEntityNameIgnoreCaseAndSizeBetween(String name, int min, int max);
+    List<ModelEntity> findAllByTypeEntityNameInIgnoreCaseAndAndIsInStock(List<String> name, boolean isInStock);
+    List<ModelEntity> findAllByTypeEntityNameInIgnoreCaseAndSizeBetween(List<String> name, int min, int max);
 
     List<ModelEntity> findAllByTypeEntityNameIgnoreCaseOrderByName (String name);
 

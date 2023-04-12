@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
+import ru.kolontsov.testtask.TestTask.dto.ModelAndAttributeDto;
 import ru.kolontsov.testtask.TestTask.dto.ModelAttributeDto;
 import ru.kolontsov.testtask.TestTask.dto.ModelDto;
 import ru.kolontsov.testtask.TestTask.dto.TypeName;
@@ -21,7 +22,6 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-@Transactional(readOnly = true)
 public class Services {
     private final TypeRepository typeRepository;
     private final ModelRepository modelRepository;
@@ -61,9 +61,9 @@ public class Services {
     }
 
     // Фильтрация по виду техники и ее цвету: приходит тип техники и ее цвет -> выходит список моделей этого типа и цвета
-    public List<ModelEntity> getModelsByColor(String color) { //работает
+    public List<ModelEntity> getModelsByColor(List<String> color) { //работает
         List<ModelEntity> allModelsByColor =
-                modelRepository.findAllByColorIgnoreCase(color);
+                modelRepository.findAllByColorInIgnoreCase(color);
         return allModelsByColor;
     }
 
@@ -85,13 +85,13 @@ public class Services {
     }
 
     // Фильтр по типу техники и наличию на складе
-    public List<ModelEntity> modelsByTypeNameAndStockAvailable(String typeName, boolean isInStock) {
-        return modelRepository.findAllByTypeEntityNameIgnoreCaseAndAndIsInStock(typeName, isInStock);
+    public List<ModelEntity> modelsByTypeNameAndStockAvailable(List<String> typeName, boolean isInStock) {
+        return modelRepository.findAllByTypeEntityNameInIgnoreCaseAndAndIsInStock(typeName, isInStock);
     }
 
     // Фильтр по типу техники и размеру
-    public List<ModelEntity> modelsByTypeNameAndSize(String typeName, int min, int max) {
-        return modelRepository.findAllByTypeEntityNameIgnoreCaseAndSizeBetween(typeName, min, max);
+    public List<ModelEntity> modelsByTypeNameAndSize(List<String> typeName, int min, int max) {
+        return modelRepository.findAllByTypeEntityNameInIgnoreCaseAndSizeBetween(typeName, min, max);
     }
 
     // Сортировка по алфавиту: приходит тип техники -> модели этого типа техники отсортированные по имени моделей
@@ -120,13 +120,11 @@ public class Services {
     }
 
     @Transactional
-    public ModelEntity createNewModelEntity(ModelDto modelDto,
-                                            ModelAttributeDto modelAttributeDto) {
+    public ModelEntity createNewModelEntity(ModelDto modelDto) {
 
         Long typeId = modelDto.getTypeId();//выцепили в какой вид техники мы хотим добавить - id
         Optional<TypeEntity> typeEntity = typeRepository.findById(typeId);// по этому id ищем сам объект типа техники
 
-        List<ModelAttributeEntity> attForModelEntity = createModelAttForEntity(modelDto, modelAttributeDto);
 
         ModelEntity modelEntity = new ModelEntity();
         modelEntity.setName(modelDto.getName());
@@ -136,37 +134,32 @@ public class Services {
         modelEntity.setPrice(modelDto.getPrice());
         modelEntity.setIsInStock(modelDto.getIsInStock());
         modelEntity.setTypeEntity(typeEntity.orElse(null));
-        modelEntity.setModelAttributeEntity(attForModelEntity);
 
         //сохранить в переменную и ее добавляю в attribute entity -> пока не понятно как это поможет
         ModelEntity modelEntityCreated = modelRepository.saveAndFlush(modelEntity);
+
+//        List<ModelAttributeEntity> attForModelEntity = createModelAttForEntity(modelEntityCreated, modelDto.getModelAttributeDto());
+//        modelEntityCreated.setModelAttributeEntity(attForModelEntity);
+
         return modelEntityCreated;
     }
 
-    @Transactional
-    public List<ModelAttributeEntity> createModelAttForEntity(ModelDto modelDto,
-                                                              ModelAttributeDto modelAttributeDto) {
-
-        Long typeId = modelDto.getTypeId();
-        String typeName = Objects.requireNonNull(typeRepository.findById(typeId).orElse(null)).getName();
+    public List<ModelAttributeEntity> createModelAttForEntity(ModelEntity modelEntityCreated,
+                                                              List<ModelAttributeDto> modelAttributeDtoList) {
 
         List<ModelAttributeEntity> attributeEntityList = new ArrayList<>();
-        ModelAttributeEntity modelAttribute1 = new ModelAttributeEntity();
-        ModelAttributeEntity modelAttribute2 = new ModelAttributeEntity();
 
-        if (typeName.equalsIgnoreCase(String.valueOf(TypeName.TV))) {
+        for (ModelAttributeDto modelAttributeDto : modelAttributeDtoList) {
 
-            modelAttribute1.setName("category");
-            modelAttribute1.setValue(modelAttributeDto.getValue());
+            ModelAttributeEntity modelAttributeEntity = new ModelAttributeEntity();
 
-            modelAttribute2.setName("technology");
-            modelAttribute2.setValue(modelAttributeDto.getValue());
-        } // и так далее для всех типов техники
+            modelAttributeEntity.setName(modelAttributeDto.getName());
+            modelAttributeEntity.setValue(modelAttributeDto.getValue());
+            modelAttributeEntity.setModelEntity(modelEntityCreated);
+            attributeEntityList.add(modelAttributeEntity);
+        }
 
-        attributeEntityList.add(modelAttribute1);
-        attributeEntityList.add(modelAttribute2);
-        modelAttributeRepository.saveAllAndFlush(attributeEntityList);
-        return attributeEntityList;
+        return modelAttributeRepository.saveAllAndFlush(attributeEntityList);
     }
 
 
