@@ -28,7 +28,7 @@ public class ModelDto {
     @Schema(name = "Цена")
     private BigDecimal price;
 
-    @Schema(name = "Налчие на складе")
+    @Schema(name = "Наличие на складе")
     private Boolean isInStock;
 
     @Schema(name = "Уникальные характеристики")

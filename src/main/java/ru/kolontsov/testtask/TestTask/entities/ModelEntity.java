@@ -12,7 +12,7 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "product_model")
-@Schema(name = "Модель")
+@Schema(example = "Модель")
 public class ModelEntity {
     @Id
     @Column(name = "id")

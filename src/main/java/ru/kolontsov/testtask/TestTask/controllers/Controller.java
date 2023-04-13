@@ -46,7 +46,6 @@ public class Controller {
         return services.getModelsByTypeName(names);
     }
 
-    // можно передать в запрос лист разных цветов
     @GetMapping("/find-color")
     @Operation(summary = "модели выбранного цвета техники")
     public List<ModelEntity> showModelsByColor(@Parameter(description = "выбранный цвет техники")
@@ -72,7 +71,6 @@ public class Controller {
         return services.modelsAttribute(name, attName, attValue);
     }
 
-    // можно передать в запрос лист разных имен
     @GetMapping("/find-stock")
     @Operation(summary = "модели техники в наличии")
     public List<ModelEntity> showModelByTypeAndInStock(@Parameter(description = "выбранные типы техники")
@@ -82,7 +80,6 @@ public class Controller {
         return services.modelsByTypeNameAndStockAvailable(name, isInStock);
     }
 
-    // можно передать в запрос лист разных имен
     @GetMapping("/find-size")
     @Operation(summary = "модели выбранного типа техники и размера")
     public List<ModelEntity> showModelByTypeAndSize(@Parameter(description = "выбранные типы техники")
@@ -92,7 +89,6 @@ public class Controller {
         return services.modelsByTypeNameAndSize(name, min, max);
     }
 
-    //TODO есть смысл имя типа на Лист тоже переделать? и в цене соответственно тоже
     @GetMapping("/sort")
     @Operation(summary = "сортировка моделей по имени")
     public List<ModelEntity> sortModelsByName(@RequestParam("name") String typeName,
@@ -125,15 +121,12 @@ public class Controller {
         return sortedModelList;
     }
 
-    //TODO это нормально оставить тут "redirect" или лучше как-то переделать?
     @PostMapping("/add")
     @Operation(summary = "добавление новой модели")
-    public String createNewTypeEntity(@Parameter(description = "значения новой модели для добавления")
+    public void createNewTypeEntity(@Parameter(description = "значения новой модели для добавления")
                                       @RequestBody ModelDto modelDto) {
 
         services.createNewModelEntity(modelDto);
-
-        return "redirect:/find";
     }
 
 }

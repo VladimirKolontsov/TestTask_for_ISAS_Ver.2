@@ -136,8 +136,3 @@ values (1, 'category', 'auto'),
        (29, 'typeEntity of processor', 'intel core i5'),
        (30, 'category', 'laptop'),
        (30, 'typeEntity of processor', 'apple m2');
-
-drop table product_model_attribute;
-drop table product_model;
-drop table product_type;
-

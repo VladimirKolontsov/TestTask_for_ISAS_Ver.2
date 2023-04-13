@@ -16,7 +16,6 @@ public interface ModelRepository extends JpaRepository<ModelEntity, Long> {
 
     List<ModelEntity> findModelEntitiesByPriceBetween (BigDecimal minPrice, BigDecimal maxPrice);
 
-    //TODO тоже не могу понять как убрать этот цвет?
     List<ModelEntity> findAllByTypeEntityNameInIgnoreCaseAndAndIsInStock(List<String> name, boolean isInStock);
     List<ModelEntity> findAllByTypeEntityNameInIgnoreCaseAndSizeBetween(List<String> name, int min, int max);
 
@@ -28,7 +27,6 @@ public interface ModelRepository extends JpaRepository<ModelEntity, Long> {
 
     List<ModelEntity> findAllByTypeEntityNameIgnoreCaseOrderByPriceDesc (String name);
 
-    //TODO сидел тупил зачем он нужен?) это та часть конечная п.2 где просили сделать поиск моделей по типу техники и ее доп атрибутам?
     @Query(value = """
             select pm.*
             from product_type pt

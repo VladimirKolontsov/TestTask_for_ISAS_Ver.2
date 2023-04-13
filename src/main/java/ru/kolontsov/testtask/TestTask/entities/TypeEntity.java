@@ -9,7 +9,7 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "product_type")
-@Schema(name = "Вид техники")
+@Schema(example = "Вид техники")
 public class TypeEntity {
     @Id
     @Column(name = "id")
@@ -45,17 +45,4 @@ public class TypeEntity {
     @Schema(name = "Модели данного типа")
     private List<ModelEntity> modelEntities;
 
-    //TODO нах эти конструкторы делал тоже не помню) закоменитл - вроде пока все работает.
-//    public TypeEntity(String name, String country, String brand,
-//                      Boolean isOnlineOrder, Boolean isCredit, Boolean isInStock) {
-//        this.name = name;
-//        this.country = country;
-//        this.brand = brand;
-//        this.isOnlineOrder = isOnlineOrder;
-//        this.isCredit = isCredit;
-//        this.isInStock = isInStock;
-//    }
-//
-//    public TypeEntity() {
-//    }
 }

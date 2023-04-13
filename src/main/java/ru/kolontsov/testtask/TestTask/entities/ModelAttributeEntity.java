@@ -8,7 +8,7 @@ import lombok.*;
 @Data
 @Entity
 @Table(name = "product_model_attribute")
-@Schema(name = "Атрибуты модели")
+@Schema(example = "Атрибуты модели")
 public class ModelAttributeEntity {
     @Id
     @Column(name = "id")

@@ -31,14 +31,8 @@ public class Services {
         this.modelAttributeRepository = modelAttributeRepository;
     }
 
-    //TODO не могу понять на сколько этот метод по заданию актуален вывести весь реестр. Оставить лучше?
     public List<TypeEntity> findAll() {
         return typeRepository.findAll();
-    }
-
-    //TODO судя по всему можно удалить? так как он есть стандартный и этот не актуален выходит. Плюс в контроллере его не использую
-    public Optional<TypeEntity> findById(long id) {
-        return typeRepository.findById(id);
     }
 
     public List<ModelEntity> getModelsByTypeName(List<String> names) {
@@ -81,7 +75,6 @@ public class Services {
         return modelRepository.findAllByTypeEntityNameIgnoreCaseOrderByPriceDesc(name);
     }
 
-    //TODO как то можно название так замутить чтобы название метода не подсвечивалось желтым?
     @Transactional
     public ModelEntity createNewModelEntity(ModelDto modelDto) {
 
@@ -105,7 +98,7 @@ public class Services {
         return modelEntityCreated;
     }
 
-    public List<ModelAttributeEntity> createModelAttForEntity(ModelEntity modelEntityCreated,
+    private List<ModelAttributeEntity> createModelAttForEntity(ModelEntity modelEntityCreated,
                                                               List<ModelAttributeDto> modelAttributeDtoList) {
 
         List<ModelAttributeEntity> attributeEntityList = new ArrayList<>();
