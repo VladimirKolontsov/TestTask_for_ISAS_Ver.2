@@ -1,7 +1,7 @@
 Инструкция по запуску приложения
 
 1. Скачиваем проект:
-
+https://github.com/VladimirKolontsov/TestTask-for-Java-Developer-position-in-ISAS
 
 2. Открываем его в IDEA.
 
