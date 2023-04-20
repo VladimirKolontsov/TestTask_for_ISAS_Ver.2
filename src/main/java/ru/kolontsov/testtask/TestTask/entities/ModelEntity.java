@@ -52,10 +52,6 @@ public class ModelEntity {
     @JsonIgnore
     private TypeEntity typeEntity;
 
-//    @OneToMany(mappedBy = "modelEntity")
-//    @Schema(name = "Уникальные характеристики")
-//    private List<ModelAttributeEntity> modelAttributeEntity;
-
     @OneToOne(mappedBy = "tvModel")
     private TvAttribute tvAttribute;
 

@@ -1,5 +1,6 @@
 package ru.kolontsov.testtask.TestTask.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.*;
@@ -35,6 +36,7 @@ public class TypeEntity {
 
     @ManyToOne
     @JoinColumn(name = "type_id", referencedColumnName = "id")
+    @JsonIgnore
     private Types types;
 
     @OneToMany(mappedBy = "typeEntity")

@@ -18,5 +18,5 @@ public class Types {
     private String name;
 
     @OneToMany(mappedBy = "types")
-    private List<TypeEntity> typeEntitySet;
+    private List<TypeEntity> typeEntityList;
 }

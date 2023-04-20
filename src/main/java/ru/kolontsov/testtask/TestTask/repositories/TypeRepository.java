@@ -8,6 +8,5 @@ import java.util.List;
 
 @Repository
 public interface TypeRepository extends JpaRepository<TypeEntity, Long> {
-    List<TypeEntity> findAllByNameIgnoreCase(String name);
-
+    List<TypeEntity> findAllByTypesNameIgnoreCase(String name);
 }

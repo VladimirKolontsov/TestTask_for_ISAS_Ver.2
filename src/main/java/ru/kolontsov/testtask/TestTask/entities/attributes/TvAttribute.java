@@ -1,5 +1,6 @@
 package ru.kolontsov.testtask.TestTask.entities.attributes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -23,5 +24,6 @@ public class TvAttribute {
 
     @OneToOne
     @JoinColumn(name = "product_model_id", referencedColumnName = "id")
+    @JsonIgnore
     private ModelEntity tvModel;
 }

@@ -1,5 +1,6 @@
 package ru.kolontsov.testtask.TestTask.entities.attributes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import ru.kolontsov.testtask.TestTask.entities.ModelEntity;
@@ -21,5 +22,6 @@ public class PhoneAttribute {
 
     @OneToOne
     @JoinColumn(name = "product_model_id", referencedColumnName = "id")
+    @JsonIgnore
     private ModelEntity phoneModel;
 }
