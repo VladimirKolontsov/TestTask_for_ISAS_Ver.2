@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import lombok.*;
+import ru.kolontsov.testtask.TestTask.entities.attributes.*;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -51,8 +52,23 @@ public class ModelEntity {
     @JsonIgnore
     private TypeEntity typeEntity;
 
-    @OneToMany(mappedBy = "modelEntity")
-    @Schema(name = "Уникальные характеристики")
-    private List<ModelAttributeEntity> modelAttributeEntity;
+//    @OneToMany(mappedBy = "modelEntity")
+//    @Schema(name = "Уникальные характеристики")
+//    private List<ModelAttributeEntity> modelAttributeEntity;
+
+    @OneToOne(mappedBy = "tvModel")
+    private TvAttribute tvAttribute;
+
+    @OneToOne(mappedBy = "cleanerModel")
+    private CleanerAttribute cleanerAttribute;
+
+    @OneToOne(mappedBy = "fridgeModel")
+    private FridgeAttribute fridgeAttribute;
+
+    @OneToOne(mappedBy = "phoneModel")
+    private PhoneAttribute phoneAttribute;
+
+    @OneToOne(mappedBy = "computerModel")
+    private ComputerAttribute computerAttribute;
 
 }

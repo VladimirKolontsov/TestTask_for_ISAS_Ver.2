@@ -17,10 +17,6 @@ public class TypeEntity {
     @Schema(name = "Уникальный идентификатор")
     private Long id;
 
-    @Column(name = "name")
-    @Schema(name = "Название вида техники")
-    private String name;
-
     @Column(name = "country")
     @Schema(name = "Страна производитель")
     private String country;
@@ -37,9 +33,9 @@ public class TypeEntity {
     @Schema(name = "Возможность покупки в кредит")
     private Boolean isCredit;
 
-    @Column(name = "is_in_stock")
-    @Schema(name = "Наличие на складе")
-    private Boolean isInStock;
+    @ManyToOne
+    @JoinColumn(name = "type_id", referencedColumnName = "id")
+    private Types types;
 
     @OneToMany(mappedBy = "typeEntity")
     @Schema(name = "Модели данного типа")

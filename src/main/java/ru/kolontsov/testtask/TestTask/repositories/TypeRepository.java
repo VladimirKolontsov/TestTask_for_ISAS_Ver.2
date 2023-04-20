@@ -8,7 +8,6 @@ import java.util.List;
 
 @Repository
 public interface TypeRepository extends JpaRepository<TypeEntity, Long> {
-    //TODO по сути я так понял он не пригодился нигде. может удалить?
     List<TypeEntity> findAllByNameIgnoreCase(String name);
 
 }
