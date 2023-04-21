@@ -24,5 +24,5 @@ public class FridgeAttribute {
     @OneToOne
     @JoinColumn(name = "product_model_id", referencedColumnName = "id")
     @JsonIgnore
-    private ModelEntity fridgeModel;
+    private ModelEntity modelEntity;
 }

@@ -14,7 +14,13 @@ public class TypeEntityService {
         this.typeRepository = typeRepository;
     }
 
-    public List<TypeEntity> findByTypesName(String name) {
-        return typeRepository.findAllByTypesNameIgnoreCase(name);
+    public List<TypeEntity> findByTypesName(List<String> names) {
+        return typeRepository.findAllByTypesNameInIgnoreCase(names);
     }
+
+//    public List<TypeEntity> findByTypesAndSort(String name) {
+//        return typeRepository.findAllByTypesNameIgnoreCaseOrderByModelEntitiesAsc(name);
+//    }
+
+
 }

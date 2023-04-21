@@ -23,5 +23,5 @@ public class ComputerAttribute {
     @OneToOne
     @JoinColumn(name = "product_model_id", referencedColumnName = "id")
     @JsonIgnore
-    private ModelEntity computerModel;
+    private ModelEntity modelEntity;
 }

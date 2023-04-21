@@ -25,5 +25,5 @@ public class TvAttribute {
     @OneToOne
     @JoinColumn(name = "product_model_id", referencedColumnName = "id")
     @JsonIgnore
-    private ModelEntity tvModel;
+    private ModelEntity modelEntity;
 }

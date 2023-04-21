@@ -25,5 +25,5 @@ public class CleanerAttribute {
     @OneToOne
     @JoinColumn(name = "product_model_id", referencedColumnName = "id")
     @JsonIgnore
-    private ModelEntity cleanerModel;
+    private ModelEntity modelEntity;
 }

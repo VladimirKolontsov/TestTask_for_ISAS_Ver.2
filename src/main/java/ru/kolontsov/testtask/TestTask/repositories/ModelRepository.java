@@ -11,17 +11,27 @@ import java.util.List;
 @Repository
 public interface ModelRepository extends JpaRepository<ModelEntity, Long> {
 
-//    List<ModelEntity> findAllByTypeEntityNameInIgnoreCase(List<String> nameTypeEntityList);
-//
-//    List<ModelEntity> findAllByColorInIgnoreCase(List<String> color);
-//
-//    List<ModelEntity> findModelEntitiesByPriceBetween (BigDecimal minPrice, BigDecimal maxPrice);
-//
-//    List<ModelEntity> findAllByTypeEntityNameInIgnoreCaseAndAndIsInStock(List<String> name, boolean isInStock);
-//    List<ModelEntity> findAllByTypeEntityNameInIgnoreCaseAndSizeBetween(List<String> name, int min, int max);
-//
-//    List<ModelEntity> findAllByTypeEntityNameIgnoreCaseOrderByName (String name);
-//
+
+    List<ModelEntity> findAllByColorInIgnoreCase(List<String> color);
+
+    List<ModelEntity> findModelEntitiesByPriceBetween (BigDecimal minPrice, BigDecimal maxPrice);
+
+    List<ModelEntity> findAllByIsInStock(boolean isInStock);
+
+    List<ModelEntity> findAllBySizeBetween(int min, int max);
+
+    //for sorting, I used parameter "isInStock" because there is no reason to sort products,
+    //which is not in the stock
+    List<ModelEntity> findAllByIsInStockOrderByNameAsc(boolean isInStock);
+
+    List<ModelEntity> findAllByIsInStockOrderByNameDesc(boolean isInStock);
+
+    List<ModelEntity> findAllByIsInStockOrderByPriceAsc(boolean isInStock);
+
+    List<ModelEntity> findAllByIsInStockOrderByPriceDesc(boolean isInStock);
+
+
+
 //    List<ModelEntity> findAllByTypeEntityNameIgnoreCaseOrderByNameDesc (String name);
 //
 //    List<ModelEntity> findAllByTypeEntityNameIgnoreCaseOrderByPrice (String name);

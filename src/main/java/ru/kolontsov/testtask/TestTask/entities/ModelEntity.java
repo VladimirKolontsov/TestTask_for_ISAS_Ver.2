@@ -52,19 +52,19 @@ public class ModelEntity {
     @JsonIgnore
     private TypeEntity typeEntity;
 
-    @OneToOne(mappedBy = "tvModel")
-    private TvAttribute tvAttribute;
-
-    @OneToOne(mappedBy = "cleanerModel")
-    private CleanerAttribute cleanerAttribute;
-
-    @OneToOne(mappedBy = "fridgeModel")
-    private FridgeAttribute fridgeAttribute;
-
-    @OneToOne(mappedBy = "phoneModel")
-    private PhoneAttribute phoneAttribute;
-
-    @OneToOne(mappedBy = "computerModel")
-    private ComputerAttribute computerAttribute;
+//    @OneToOne(mappedBy = "modelEntity")
+//    private TvAttribute tvAttribute;
+//
+//    @OneToOne(mappedBy = "modelEntity")
+//    private CleanerAttribute cleanerAttribute;
+//
+//    @OneToOne(mappedBy = "modelEntity")
+//    private FridgeAttribute fridgeAttribute;
+//
+//    @OneToOne(mappedBy = "modelEntity")
+//    private PhoneAttribute phoneAttribute;
+//
+//    @OneToOne(mappedBy = "modelEntity")
+//    private ComputerAttribute computerAttribute;
 
 }

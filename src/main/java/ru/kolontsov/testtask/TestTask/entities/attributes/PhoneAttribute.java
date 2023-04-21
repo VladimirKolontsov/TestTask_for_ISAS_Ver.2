@@ -23,5 +23,5 @@ public class PhoneAttribute {
     @OneToOne
     @JoinColumn(name = "product_model_id", referencedColumnName = "id")
     @JsonIgnore
-    private ModelEntity phoneModel;
+    private ModelEntity modelEntity;
 }
