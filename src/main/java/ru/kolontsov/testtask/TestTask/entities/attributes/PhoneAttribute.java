@@ -3,14 +3,17 @@ package ru.kolontsov.testtask.TestTask.entities.attributes;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import ru.kolontsov.testtask.TestTask.entities.ModelEntity;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "phone_attribute")
 public class PhoneAttribute {
     @Id
-    @Column(name = "id")
+//    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 

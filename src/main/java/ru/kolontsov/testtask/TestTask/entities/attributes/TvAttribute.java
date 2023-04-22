@@ -4,14 +4,17 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import ru.kolontsov.testtask.TestTask.entities.ModelEntity;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "tv_attribute")
 public class TvAttribute {
     @Id
-    @Column(name = "id")
+//    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Schema(name = "Уникальный идентификатор характеристики")
     private Long id;

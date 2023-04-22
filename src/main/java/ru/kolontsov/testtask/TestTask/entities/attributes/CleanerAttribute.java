@@ -4,16 +4,18 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import ru.kolontsov.testtask.TestTask.entities.ModelEntity;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "cleaner_attribute")
 public class CleanerAttribute {
     @Id
-    @Column(name = "id")
+//    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Schema(name = "Уникальный идентификатор характеристики")
     private Long id;
 
 //    private Long productModelId;

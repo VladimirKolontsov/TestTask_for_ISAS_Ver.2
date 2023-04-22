@@ -1,17 +1,12 @@
 package ru.kolontsov.testtask.TestTask.services;
 
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import ru.kolontsov.testtask.TestTask.controllers.SortingType;
 import ru.kolontsov.testtask.TestTask.entities.ModelEntity;
-import ru.kolontsov.testtask.TestTask.entities.TypeEntity;
 import ru.kolontsov.testtask.TestTask.repositories.ModelRepository;
 import ru.kolontsov.testtask.TestTask.repositories.TypeRepository;
-import ru.kolontsov.testtask.TestTask.repositories.TypesRepository;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class ModelService {

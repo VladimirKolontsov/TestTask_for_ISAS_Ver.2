@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.kolontsov.testtask.TestTask.entities.ModelEntity;
 import ru.kolontsov.testtask.TestTask.entities.TypeEntity;
 import ru.kolontsov.testtask.TestTask.entities.Types;
+import ru.kolontsov.testtask.TestTask.enums.SortingType;
 import ru.kolontsov.testtask.TestTask.services.ModelService;
 import ru.kolontsov.testtask.TestTask.services.TypeEntityService;
 import ru.kolontsov.testtask.TestTask.services.TypesService;
