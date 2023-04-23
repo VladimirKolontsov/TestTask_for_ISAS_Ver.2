@@ -5,34 +5,29 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "product_type")
-//@Schema(example = "Вид техники")
+@Schema(example = "Model overview")
 public class TypeEntity {
     @Id
-//    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @Schema(name = "Уникальный идентификатор")
+    @Schema(name = "Unique identifier")
     private Long id;
 
-//    @Column(name = "country")
-//    @Schema(name = "Страна производитель")
+    @Schema(name = "Country producer")
     private String country;
 
-//    @Column(name = "brand")
-//    @Schema(name = "Бренд")
+    @Schema(name = "Brand")
     private String brand;
 
-//    @Column(name = "is_online_order")
-//    @Schema(name = "Возможность заказа онлайн")
+    @Schema(name = "Online order availability")
     private Boolean isOnlineOrder;
 
-//    @Column(name = "is_credit")
-//    @Schema(name = "Возможность покупки в кредит")
+    @Schema(name = "availability to buy in credit")
     private Boolean isCredit;
 
     @ManyToOne
@@ -41,7 +36,7 @@ public class TypeEntity {
     private Types types;
 
     @OneToMany(mappedBy = "typeEntity")
-//    @Schema(name = "Модели данного типа")
-    private List<ModelEntity> modelEntities;
+    @Schema(name = "Model of this type and brand")
+    private Set<ModelEntity> modelEntities;
 
 }

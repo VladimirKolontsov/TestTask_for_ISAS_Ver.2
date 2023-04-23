@@ -1,37 +1,52 @@
 package ru.kolontsov.testtask.TestTask.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import ru.kolontsov.testtask.TestTask.dto.attributes.*;
 
 import java.math.BigDecimal;
 import java.util.List;
 
-@Data
-@Schema(name = "Модель")
+@Getter
+@Setter
+@Schema(name = "Model")
 public class ModelDto {
 
-    @Schema(name = "Идентификатор типа техники")
-    private Long typeId;
+    @Schema(name = "Unique identifier of product type")
+    private Long productTypeId;
 
-    @Schema(name = "Наименование модели")
+    @Schema(name = "Name of model")
     private String name;
 
-    @Schema(name = "Серийный номер")
+    @Schema(name = "Serial number")
     private Integer serialNumber;
 
-    @Schema(name = "Цвет")
+    @Schema(name = "Color")
     private String color;
 
-    @Schema(name = "Размер")
+    @Schema(name = "Size")
     private Integer size;
 
-    @Schema(name = "Цена")
+    @Schema(name = "Price")
     private BigDecimal price;
 
-    @Schema(name = "Наличие на складе")
+    @Schema(name = "Stock availability")
     private Boolean isInStock;
 
-    @Schema(name = "Уникальные характеристики")
-    private List<ModelAttributeDto> modelAttributeDto;
+    @Schema(name = "Tv characteristics")
+    private TvAttributeDto tvAttributeDto;
+
+    @Schema(name = "Cleaner characteristics")
+    private CleanerAttributeDto cleanerAttributeDto;
+
+    @Schema(name = "Fridge characteristics")
+    private FridgeAttributeDto fridgeAttributeDto;
+
+    @Schema(name = "Phone characteristics")
+    private PhoneAttributeDto phoneAttributeDto;
+
+    @Schema(name = "Computer characteristics")
+    private ComputerAttributeDto computerAttributeDto;
 
 }

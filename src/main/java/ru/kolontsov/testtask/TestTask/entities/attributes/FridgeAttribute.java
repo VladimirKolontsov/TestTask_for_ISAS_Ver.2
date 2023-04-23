@@ -3,7 +3,6 @@ package ru.kolontsov.testtask.TestTask.entities.attributes;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import ru.kolontsov.testtask.TestTask.entities.ModelEntity;
@@ -12,16 +11,17 @@ import ru.kolontsov.testtask.TestTask.entities.ModelEntity;
 @Setter
 @Entity
 @Table(name = "fridge_attribute")
+@Schema(example = "Fridge attribute")
 public class FridgeAttribute {
     @Id
-//    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Schema(name = "Unique identifier")
     private Long id;
 
-//    private Long productModelId;
-
+    @Schema(name = "Quantity of doors")
     private Integer quantityOfDoors;
 
+    @Schema(name = "Type of compressor")
     private String typeOfCompressor;
 
     @OneToOne

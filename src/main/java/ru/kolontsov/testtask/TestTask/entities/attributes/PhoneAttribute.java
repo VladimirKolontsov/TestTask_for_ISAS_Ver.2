@@ -1,6 +1,7 @@
 package ru.kolontsov.testtask.TestTask.entities.attributes;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
@@ -11,16 +12,17 @@ import ru.kolontsov.testtask.TestTask.entities.ModelEntity;
 @Setter
 @Entity
 @Table(name = "phone_attribute")
+@Schema(example = "Phone attribute")
 public class PhoneAttribute {
     @Id
-//    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Schema(name = "Unique identifier")
     private Long id;
 
-//    private Long productModelId;
-
+    @Schema(name = "Phone memory")
     private Integer phoneMemory;
 
+    @Schema(name = "Quantity of cameras")
     private Integer quantityOfCameras;
 
     @OneToOne

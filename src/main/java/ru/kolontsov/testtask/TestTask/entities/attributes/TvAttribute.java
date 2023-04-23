@@ -12,17 +12,17 @@ import ru.kolontsov.testtask.TestTask.entities.ModelEntity;
 @Setter
 @Entity
 @Table(name = "tv_attribute")
+@Schema(example = "Tv attribute")
 public class TvAttribute {
     @Id
-//    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Schema(name = "Уникальный идентификатор характеристики")
+    @Schema(name = "Unique identifier")
     private Long id;
 
-//    private Long productModelId;
-
+    @Schema(name = "Category")
     private String categories;
 
+    @Schema(name = "Technology")
     private String technology;
 
     @OneToOne

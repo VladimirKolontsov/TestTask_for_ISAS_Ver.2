@@ -1,19 +1,6 @@
 spring:
   jpa:
-#    show-sql: true
-#    open-in-view: false
-#
-#    # validate db by model
-#    hibernate:
-#      ddl-auto: validate
-
     properties:
-#      #  http://docs.jboss.org/hibernate/orm/5.3/userguide/html_single/Hibernate_User_Guide.html#configurations
-#      hibernate:
-#        format_sql: true
-#        default_batch_fetch_size: 20
-#        # https://stackoverflow.com/questions/21257819/what-is-the-difference-between-hibernate-jdbc-fetch-size-and-hibernate-jdbc-batc
-#        jdbc.batch_size: 20
         dialect: org.hibernate.dialect.PostgreSQLDialect
         show_sql: true
   datasource:
@@ -22,5 +9,5 @@ spring:
     password: admin
     driver-class-name: org.postgresql.Driver
 springdoc:
-  api-docs:
-    path: /swag-run
+  swagger-ui:
+    path: /swag-run.html
