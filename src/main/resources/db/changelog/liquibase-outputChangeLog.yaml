@@ -1,0 +1,361 @@
+databaseChangeLog:
+- changeSet:
+    id: 1682267108509-1
+    author: vladimirkoloncov (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: cleaner_attribute_pkey
+            name: id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: product_model_id
+            type: INTEGER
+        - column:
+            constraints:
+              nullable: false
+            name: dust_container_volume
+            type: FLOAT8
+        - column:
+            constraints:
+              nullable: false
+            name: quantity_of_modes
+            type: INTEGER
+        tableName: cleaner_attribute
+- changeSet:
+    id: 1682267108509-2
+    author: vladimirkoloncov (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: computer_attribute_pkey
+            name: id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: product_model_id
+            type: INTEGER
+        - column:
+            constraints:
+              nullable: false
+            name: categories
+            type: VARCHAR(100)
+        - column:
+            constraints:
+              nullable: false
+            name: type_of_processor
+            type: VARCHAR(100)
+        tableName: computer_attribute
+- changeSet:
+    id: 1682267108509-3
+    author: vladimirkoloncov (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: fridge_attribute_pkey
+            name: id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: product_model_id
+            type: INTEGER
+        - column:
+            constraints:
+              nullable: false
+            name: quantity_of_doors
+            type: INTEGER
+        - column:
+            constraints:
+              nullable: false
+            name: type_of_compressor
+            type: VARCHAR(100)
+        tableName: fridge_attribute
+- changeSet:
+    id: 1682267108509-4
+    author: vladimirkoloncov (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: phone_attribute_pkey
+            name: id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: product_model_id
+            type: INTEGER
+        - column:
+            constraints:
+              nullable: false
+            name: phone_memory
+            type: INTEGER
+        - column:
+            constraints:
+              nullable: false
+            name: quantity_of_cameras
+            type: INTEGER
+        tableName: phone_attribute
+- changeSet:
+    id: 1682267108509-5
+    author: vladimirkoloncov (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: product_model_pkey
+            name: id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: product_type_id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: name
+            type: VARCHAR(50)
+        - column:
+            constraints:
+              nullable: false
+            name: serial_number
+            type: INTEGER
+        - column:
+            constraints:
+              nullable: false
+            name: color
+            type: VARCHAR(50)
+        - column:
+            constraints:
+              nullable: false
+            name: size
+            type: INTEGER
+        - column:
+            constraints:
+              nullable: false
+            name: price
+            type: numeric
+        - column:
+            name: is_in_stock
+            type: BOOLEAN
+        tableName: product_model
+- changeSet:
+    id: 1682267108509-6
+    author: vladimirkoloncov (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: product_type_pkey
+            name: id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: type_id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: country
+            type: VARCHAR(50)
+        - column:
+            constraints:
+              nullable: false
+            name: brand
+            type: VARCHAR(50)
+        - column:
+            name: is_online_order
+            type: BOOLEAN
+        - column:
+            name: is_credit
+            type: BOOLEAN
+        tableName: product_type
+- changeSet:
+    id: 1682267108509-7
+    author: vladimirkoloncov (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: tv_attribute_pkey
+            name: id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: product_model_id
+            type: INTEGER
+        - column:
+            constraints:
+              nullable: false
+            name: categories
+            type: VARCHAR(50)
+        - column:
+            constraints:
+              nullable: false
+            name: technology
+            type: VARCHAR(100)
+        tableName: tv_attribute
+- changeSet:
+    id: 1682267108509-8
+    author: vladimirkoloncov (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: types_pkey
+            name: id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: name
+            type: VARCHAR(50)
+        tableName: types
+- changeSet:
+    id: 1682267108509-9
+    author: vladimirkoloncov (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: product_model_id
+        baseTableName: cleaner_attribute
+        constraintName: cleaner_attribute_product_model_id_fkey
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: CASCADE
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: product_model
+        validate: true
+- changeSet:
+    id: 1682267108509-10
+    author: vladimirkoloncov (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: product_model_id
+        baseTableName: computer_attribute
+        constraintName: computer_attribute_product_model_id_fkey
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: CASCADE
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: product_model
+        validate: true
+- changeSet:
+    id: 1682267108509-11
+    author: vladimirkoloncov (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: product_model_id
+        baseTableName: fridge_attribute
+        constraintName: fridge_attribute_product_model_id_fkey
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: CASCADE
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: product_model
+        validate: true
+- changeSet:
+    id: 1682267108509-12
+    author: vladimirkoloncov (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: product_model_id
+        baseTableName: phone_attribute
+        constraintName: phone_attribute_product_model_id_fkey
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: CASCADE
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: product_model
+        validate: true
+- changeSet:
+    id: 1682267108509-13
+    author: vladimirkoloncov (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: product_type_id
+        baseTableName: product_model
+        constraintName: product_model_product_type_id_fkey
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: CASCADE
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: product_type
+        validate: true
+- changeSet:
+    id: 1682267108509-14
+    author: vladimirkoloncov (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: type_id
+        baseTableName: product_type
+        constraintName: product_type_type_id_fkey
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: CASCADE
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: types
+        validate: true
+- changeSet:
+    id: 1682267108509-15
+    author: vladimirkoloncov (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: product_model_id
+        baseTableName: tv_attribute
+        constraintName: tv_attribute_product_model_id_fkey
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: CASCADE
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: product_model
+        validate: true
+

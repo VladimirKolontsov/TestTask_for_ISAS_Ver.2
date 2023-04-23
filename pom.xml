@@ -63,7 +63,12 @@
 			<version>2.0.2</version>
 		</dependency>
 
-
+		<!-- https://mvnrepository.com/artifact/org.liquibase/liquibase-core -->
+		<dependency>
+			<groupId>org.liquibase</groupId>
+			<artifactId>liquibase-core</artifactId>
+			<version>4.21.1</version>
+		</dependency>
 
 	</dependencies>
 
@@ -79,6 +84,18 @@
 							<artifactId>lombok</artifactId>
 						</exclude>
 					</excludes>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.liquibase</groupId>
+				<artifactId>liquibase-maven-plugin</artifactId>
+				<version>4.17.2</version>
+				<configuration>
+					<driver>org.postgresql.Driver</driver>
+					<url>jdbc:postgresql://localhost:5432/technique_shop</url>
+					<username>postgres</username>
+					<password>admin</password>
+					<outputChangeLogFile>src/main/resources/db/changelog/liquibase-outputChangeLog.yaml</outputChangeLogFile>
 				</configuration>
 			</plugin>
 		</plugins>
