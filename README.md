@@ -5,6 +5,8 @@ https://github.com/VladimirKolontsov/TestTask-for-Java-Developer-position-in-ISA
 
 2. Открываем его в IDEA.
 
+**2.1 Внедрил liquibase.**
+
 3. Необходимо создать базу данных с именем: technique_shop
 
 Host: localhost
@@ -13,6 +15,9 @@ URL: jdbc:postgresql://localhost:5432/technique_shop
 
 User: postgres
 Password: admin
+
+3.1 Теперь при первом запуске приложения таблицы создаются сами.
+Чтобы наполнить их данными, необходимо выполнить скрипты из файла sqlForDB.sql .
 
 4. После создания БД и успешного подключения к ней, заходим в файл sqlForDB.sql и выполняем скрипты по созданию
 и заполнению таблиц БД.
